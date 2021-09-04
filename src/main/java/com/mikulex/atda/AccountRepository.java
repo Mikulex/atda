@@ -1,7 +1,7 @@
 package com.mikulex.atda;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AccountRepository extends CrudRepository<Task, Long>{
+public interface AccountRepository extends JpaRepository<Task, Long>{
     
 }
