@@ -9,6 +9,7 @@ public class Account {
     
     private String name;
     private @JsonIgnore String password;
+    @OneToMany
     private List<Task> taskList;
 
     public Account(String name, String password){
@@ -51,5 +52,10 @@ public class Account {
         return (Objects.equals(this.name, account.name)
         && Objects.equals(this.password, account.password)
         && Objects.equals(this.checkList, account.checkList))
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hashCode(name, password, checkList);
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,6 +16,8 @@ public class Task {
 
     private String title;
     private String content;
+    
+    @ElementCollection
     private List<String> checkList;
 
     public Task(String title, String content, List<String> checklList){
