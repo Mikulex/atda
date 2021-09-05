@@ -1,5 +1,19 @@
 package com.mikulex.atda;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 @Entity
 public class Account {
 
@@ -14,7 +28,7 @@ public class Account {
 
     public Account(String name, String password){
         this.name = name;
-        this.password = this.setPassword(password);
+        this.setPassword(password);
         this.taskList = new ArrayList<Task>();
     }
 
@@ -30,16 +44,16 @@ public class Account {
         return password;
     }
 
-    public String setPassword(password){
+    public void setPassword(String password){
         this.password = PASSWORD_ENCODER.encode(password);
     }
     
     public List<Task> getCheckList(){
-        return this.checklList;
+        return this.taskList;
     }
 
     public void setCheckList(List<Task> checkList){
-        this.checklList = checkList;
+        this.taskList = checkList;
     }
 
     @Override
@@ -51,11 +65,11 @@ public class Account {
         Account account = (Account) obj;
         return (Objects.equals(this.name, account.name)
         && Objects.equals(this.password, account.password)
-        && Objects.equals(this.checkList, account.checkList))
+        && Objects.equals(this.taskList, account.taskList));
     }
 
     @Override
     public int hashCode(){
-        return Objects.hashCode(name, password, checkList);
+        return Objects.hash(name, password, taskList);
     }
 }
