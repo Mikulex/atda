@@ -57,7 +57,6 @@ public class TaskController {
         .map(task -> {
             task.setContent(newTask.getContent());
             task.setTitle(newTask.getTitle());
-            task.setCheckList(newTask.getCheckList());
             return taskRepository.save(task);
         })
         .orElseGet(() -> {
