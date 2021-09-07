@@ -1,6 +1,5 @@
 package com.mikulex.atda;
 
-import org.hibernate.EntityMode;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
