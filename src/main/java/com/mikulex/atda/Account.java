@@ -32,6 +32,14 @@ public class Account {
         this.taskList = new ArrayList<Task>();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName(){
         return this.name;
     }
@@ -65,11 +73,12 @@ public class Account {
         Account account = (Account) obj;
         return (Objects.equals(this.name, account.name)
         && Objects.equals(this.password, account.password)
+        && this.id == account.id
         && Objects.equals(this.taskList, account.taskList));
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(name, password, taskList);
+        return Objects.hash(name, password, taskList, id);
     }
 }
