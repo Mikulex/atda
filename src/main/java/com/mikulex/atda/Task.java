@@ -1,34 +1,27 @@
 package com.mikulex.atda;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Task {
-    
+
     private @Id @GeneratedValue Long id;
 
     private String title;
     private String content;
-    
-    @ElementCollection
-    private List<String> checkList;
+    private boolean finished;
 
-    public Task(String title, String content, List<String> checklList){
-        this.title = title;
-        this.content = content;
-        this.checkList = checklList;
+    public Task() {
     }
-    public Task(String title, String content){
+
+    public Task(String title, String content) {
         this.title = title;
         this.content = content;
-        this.checkList = new ArrayList<String>();
+        this.finished = false;
     }
 
     public Long getId() {
@@ -55,30 +48,30 @@ public class Task {
         this.content = content;
     }
 
-    public List<String> getCheckList() {
-        return checkList;
+    public boolean isFinished(){
+        return finished;
     }
 
-    public void setCheckList(List<String> checkList) {
-        this.checkList = checkList;
+    public void setFinished(boolean finished){
+        this.finished = finished;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if(Objects.isNull(obj)) return false;
-        if(!(obj instanceof Task)) return false;
+        if (this == obj)
+            return true;
+        if (Objects.isNull(obj))
+            return false;
+        if (!(obj instanceof Task))
+            return false;
 
         Task task = (Task) obj;
-        return this.id == task.id
-        && this.content.equals(task.content)
-        && this.title.equals(task.title)
-        && this.checkList.equals(task.checkList);
+        return this.id == task.id && this.content.equals(task.content) && this.title.equals(task.title) && this.finished == task.finished;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, content, title, checkList);
+        return Objects.hash(id, content, title);
     }
 
 }
